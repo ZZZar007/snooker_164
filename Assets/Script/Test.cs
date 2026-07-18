@@ -21,6 +21,7 @@ public class Test : MonoBehaviour
         timer += Time.deltaTime;
 
         n++;
+        Debug.Log(Time.deltaTime);
 
         if (timer >=1f)
         {
