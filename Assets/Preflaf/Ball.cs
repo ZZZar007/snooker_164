@@ -22,6 +22,9 @@ public class Ball : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private BallColor color;
 
+    [SerializeField]
+    private MeshRenderer rd;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log(point);
@@ -38,5 +41,16 @@ public class Ball : MonoBehaviour, IPointerClickHandler
     void Update()
     {
         
+    }
+
+    public void SetColorAndPoint(BallColor col)
+    {
+        switch (col)
+        {
+            case BallColor.White:
+                point = 0;
+                rd.material.color = Color.white;
+                break;
+        }
     }
 }
