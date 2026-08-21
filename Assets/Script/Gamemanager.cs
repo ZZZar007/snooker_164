@@ -19,7 +19,7 @@ public class Gamemanager : MonoBehaviour
     private GameObject cueBall;
 
     [SerializeField]
-    private GameObject BallLine;
+    private GameObject ballLine;
 
     [SerializeField]
     private GameObject cam;
@@ -57,10 +57,10 @@ public class Gamemanager : MonoBehaviour
             ShootBall();
 
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
-            xInput = -0.1f;
+            xInput = -0.05f;
 
-        else if (Keyboard.current.aKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
-            xInput = 0.1f;
+        else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+            xInput = 0.05f;
 
         else 
             xInput = 0f; 
@@ -84,7 +84,7 @@ public class Gamemanager : MonoBehaviour
     {
         Rigidbody rb = cueBall.GetComponent<Rigidbody>();
         rb.AddRelativeForce(Vector3.forward * 50, ForceMode.Impulse);
-        BallLine.SetActive(false);
+        ballLine.SetActive(false);
 
         cam.transform.parent = null;
         cam.transform.position = new Vector3(0f, 30f,-42f);
@@ -102,7 +102,7 @@ public class Gamemanager : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         cueBall.transform.eulerAngles = new Vector3 (0f, 0f, 0f);
-        BallLine.SetActive(true);
+        ballLine.SetActive(true);
         CameraBehindCueball();
     }
 

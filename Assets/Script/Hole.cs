@@ -6,7 +6,7 @@ public class Hole : MonoBehaviour
     {
         Ball b = other.GetComponent<Ball>();
 
-        if (b = null)
+        if (b != null)
         {
             Gamemanager.instance.PlayerScore += b.Point;
             Destroy(b.gameObject );
