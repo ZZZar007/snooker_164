@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Gamemanager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class Gamemanager : MonoBehaviour
 
     [SerializeField]
     private float xInput = 0f;
+
+    [SerializeField]
+    private TMP_Text notiText;
 
     public static Gamemanager instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -102,6 +106,7 @@ public class Gamemanager : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         cueBall.transform.eulerAngles = new Vector3 (0f, 0f, 0f);
+
         ballLine.SetActive(true);
         CameraBehindCueball();
     }
@@ -111,6 +116,17 @@ public class Gamemanager : MonoBehaviour
         cam.transform.parent = cueBall.transform;
         cam.transform.position = cueBall.transform.position + new Vector3(0f, 7f, -15f);
         cam.transform.eulerAngles = new Vector3(30f, 0f, 0f);
+    }
+
+    public void ShowScoreText(int n)
+    {
+        playerScore += n;
+        notiText.text = $"Ball Point:{n}\nTotal Score:{playerScore}";
+    }
+
+    public void ShowString(string s)
+    {
+        notiText.text = s;
     }
 }
 
