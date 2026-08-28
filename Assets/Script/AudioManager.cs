@@ -16,6 +16,11 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,5 +50,17 @@ public class AudioManager : MonoBehaviour
     {
         if (i < sfx.Length)
             sfx[i].PlayOneShot(sfx[i].clip);
+    }
+
+    public void AdjustMasterVolume(float volume)
+    {
+        audioMixer.SetFloat("master", volume);
+        PlayerPrefs.SetFloat("master", volume);
+        PlayerPrefs.Save();
+    }
+
+    public float LoadCurrentMasterVol()
+    {
+        return PlayerPrefs.GetFloat("master", 0f);
     }
 }

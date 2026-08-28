@@ -19,6 +19,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField]
     private GameObject cueBall;
 
+
     [SerializeField]
     private GameObject ballLine;
 
@@ -51,6 +52,9 @@ public class Gamemanager : MonoBehaviour
         SetBall(BallColor.Black, 7);
 
         CameraBehindCueball();
+
+        if (Settings.fromSave)
+            LoadGame();
     }
 
     void Update()
@@ -141,8 +145,10 @@ public class Gamemanager : MonoBehaviour
             PlayerPrefs.SetFloat("cueBallPosX",cueBall.transform.position.x);
             PlayerPrefs.SetFloat("cueBallPosY", cueBall.transform.position.y);
             PlayerPrefs.SetFloat("cueBallPosZ", cueBall.transform.position.z);
-            Debug.Log("Saved");
+            Debug.Log("Saved White");
         }
+
+
        
     }
     public void LoadGame()
@@ -155,8 +161,16 @@ public class Gamemanager : MonoBehaviour
             float y = PlayerPrefs.GetFloat("cueBallPosY");
             float z = PlayerPrefs.GetFloat("cueBallPosZ");
 
+            cueBall.transform.position= new Vector3(x, y, z);
+
             Debug.Log("Loaded");
+
+
         }
+
+       
+
+        
 
     }
 }
